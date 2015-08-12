@@ -6,7 +6,7 @@ var AboutSettingTab = new Class({
 	initialize: function(){
 		var self = this;
 
-		App.addEvent('load', self.addSettings.bind(self))
+		App.addEvent('loadSettings', self.addSettings.bind(self))
 
 	},
 
@@ -117,7 +117,7 @@ var AboutSettingTab = new Class({
 		var self = this;
 		var date = new Date(json.version.date * 1000);
 		self.version_text.set('text', json.version.hash + (json.version.date ? ' ('+date.toLocaleString()+')' : ''));
-		self.updater_type.set('text', json.version.type + ', ' + json.branch);
+		self.updater_type.set('text', (json.version.type != json.branch) ? (json.version.type + ', ' + json.branch) : json.branch);
 	}
 
 });
